@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FindMissing - Reconnecting Families</title>
+    <meta name="description" content="Official platform to report and find missing children in India. Connect with police and community to help.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Find<span class="highlight">Missing</span></a>
+            <div class="nav-links">
+                <a href="#active-cases">Active Cases</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#" class="btn-secondary" onclick="openPoliceLogin()">Police Login</a>
+                <a href="#" class="btn-primary" onclick="openReportModal()">Report Missing</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Help Us Bring Them <span class="highlight">Home</span></h1>
+            <p>Every second counts. Join the community-led mission to locate missing children across India. Report sightings, verify cases, and earn rewards for helping police.</p>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search by name, city, or ID..." onkeyup="filterCards()">
+                <button onclick="filterCards()">Search</button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">1,204</span>
+                    <span class="stat-label">Reunited</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">45</span>
+                    <span class="stat-label">Active Today</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24h</span>
+                    <span class="stat-label">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Filters -->
+        <section class="filters" id="active-cases">
+            <div class="section-header">
+                <h2>Active Cases</h2>
+                <div class="filter-options">
+                    <button class="filter-btn active" onclick="setFilter('all')">All</button>
+                    <button class="filter-btn" onclick="setFilter('recent')">Recent (24h)</button>
+                    <button class="filter-btn" onclick="setFilter('high-risk')">High Priority</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Missing Persons Grid -->
+        <div class="cards-grid" id="cardsGrid">
+            <!-- Cards will be injected here by JS -->
+        </div>
+
+    </main>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="icon-box"><i class="fas fa-bullhorn"></i></div>
+                    <h3>Report</h3>
+                    <p>Families or police upload details of the missing child immediately.</p>
+                </div>
+                <div class="step-card">
+                    <div class="icon-box"><i class="fas fa-users-viewfinder"></i></div>
+                    <h3>Community Alert</h3>
+                    <p>Locals receive notifications. Sightings are reported securely.</p>
+                </div>
+                <div class="step-card">
+                    <div class="icon-box"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3>Reward & Reunite</h3>
+                    <p>Verified information leads to rewards and family reunions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>FindMissing</h3>
+                <p>Connecting families, police, and communities.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Emergency</h4>
+                <p><i class="fas fa-phone"></i> 100 (Police)</p>
+                <p><i class="fas fa-phone"></i> 1098 (Child Helpline)</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 FindMissing India. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Report Modal -->
+    <div class="modal" id="reportModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('reportModal')">&times;</span>
+            <h2>Report Missing Child</h2>
+            <form id="reportForm" onsubmit="handleReportSubmit(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" name="age" required>
+                </div>
+                <div class="form-group">
+                    <label>Last Seen Location</label>
+                    <input type="text" name="location" required>
+                </div>
+                <div class="form-group">
+                    <label>Description / Clothing</label>
+                    <textarea name="description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Upload Photo</label>
+                    <input type="file" accept="image/*">
+                </div>
+                <button type="submit" class="btn-primary full-width">Submit Report</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sighting Modal -->
+    <div class="modal" id="sightingModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('sightingModal')">&times;</span>
+            <h2>Report Sighting</h2>
+            <p id="sightingContext">Reporting info for...</p>
+            <form id="sightingForm" onsubmit="handleSightingSubmit(event)">
+                <div class="form-group">
+                    <label>Your Name (Optional)</label>
+                    <input type="text" name="reporterName">
+                </div>
+                <div class="form-group">
+                    <label>Sighting Location</label>
+                    <input type="text" name="sightingLocation" required>
+                </div>
+                <div class="form-group">
+                    <label>Details</label>
+                    <textarea name="sightingDetails" rows="3" placeholder="What did you see?"></textarea>
+                </div>
+                <button type="submit" class="btn-primary full-width">Submit Info</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

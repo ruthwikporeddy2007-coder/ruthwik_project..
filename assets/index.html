@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missing Children India | Help Find Them</title>
+    <meta name="description" content="A platform to report and find missing children across India.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <span class="logo-icon">🔍</span>
+                <h1>Missing Children <span>India</span></h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#active-cases">Active Cases</a></li>
+                    <li><a href="#police-updates">Police Updates</a></li>
+                    <li><a href="#" id="report-btn" class="btn btn-primary">Report Sighting</a></li>
+                </ul>
+            </nav>
+            <div class="emergency">
+                <span>Emergency: </span>
+                <strong>1098</strong>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h2>Help Us Bring Them Home</h2>
+                <p>Every second counts. Report sightings, view active missing children cases, and receive real-time updates from regional police stations. Help and earn rewards.</p>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search by name, city, or state...">
+                    <button class="btn btn-search">Search</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="active-cases" class="container section">
+            <div class="section-header">
+                <h2>Active Cases</h2>
+                <div class="filters">
+                    <select id="state-filter">
+                        <option value="all">All States</option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="karnataka">Karnataka</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grid" id="cases-grid">
+                <!-- Cases dynamically injected here -->
+            </div>
+        </section>
+
+        <section id="police-updates" class="container section">
+            <div class="section-header">
+                <h2>Regional Police Updates</h2>
+            </div>
+            <div class="updates-feed" id="updates-feed">
+                <!-- Updates dynamically injected here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Report Modal -->
+    <div id="report-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Report a Sighting</h2>
+            <form id="report-form">
+                <div class="form-group">
+                    <label for="child-id">Case ID (if known)</label>
+                    <input type="text" id="child-id" placeholder="Optional">
+                </div>
+                <div class="form-group">
+                    <label for="location">Location Seen</label>
+                    <input type="text" id="location" required placeholder="City, Area, Landmark">
+                </div>
+                <div class="form-group">
+                    <label for="details">Additional Details</label>
+                    <textarea id="details" rows="4" required placeholder="Description of clothing, companions, etc."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contact">Your Contact Number</label>
+                    <input type="tel" id="contact" required placeholder="+91">
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Submit Report</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
