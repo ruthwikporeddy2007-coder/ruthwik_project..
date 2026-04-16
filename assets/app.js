@@ -148,6 +148,7 @@ function setupSearch() {
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.querySelector('.btn-search');
     const stateFilter = document.getElementById('state-filter');
+    if (!searchInput || !searchBtn) return;
 
     const filterCases = () => {
         const term = searchInput.value.toLowerCase();
@@ -168,3 +169,54 @@ function setupSearch() {
     };
     stateFilter.onchange = filterCases;
 }
+
+// Wizard Logic
+let currentWizardStep = 1;
+
+window.openWizard = function () {
+    const modal = document.getElementById('wizard-modal');
+    modal.classList.add('active');
+    currentWizardStep = 1;
+    updateWizardUI();
+};
+
+window.closeWizard = function () {
+    const modal = document.getElementById('wizard-modal');
+    modal.classList.remove('active');
+};
+
+window.nextStep = function (step) {
+    currentWizardStep = step;
+    updateWizardUI();
+};
+
+window.prevStep = function (step) {
+    currentWizardStep = step;
+    updateWizardUI();
+};
+
+function updateWizardUI() {
+    // Hide all steps
+    document.querySelectorAll('.wizard-step').forEach(el => {
+        el.style.display = 'none';
+    });
+    // Show current step
+    document.getElementById('step-' + currentWizardStep).style.display = 'block';
+
+    // Update progress bar
+    const progressFill = document.getElementById('wizard-progress');
+    progressFill.style.width = (currentWizardStep * 25) + '%';
+}
+
+window.submitWizard = function () {
+    alert("Alert has been securely published to authorities and the active case list!");
+    closeWizard();
+
+    // To reset form values realistically
+    document.getElementById('wiz-name').value = '';
+    document.getElementById('wiz-age').value = '';
+    document.getElementById('wiz-date').value = '';
+    document.getElementById('wiz-location').value = '';
+    document.getElementById('wiz-desc').value = '';
+    document.getElementById('wiz-contact').value = '';
+};

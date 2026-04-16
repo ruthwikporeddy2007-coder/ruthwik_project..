@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header class="main-header">
         <div class="container header-container">
@@ -33,10 +35,11 @@
         <section class="hero">
             <div class="container hero-content">
                 <h2>Help Us Bring Them Home</h2>
-                <p>Every second counts. Report sightings, view active missing children cases, and receive real-time updates from regional police stations. Help and earn rewards.</p>
-                <div class="search-bar">
-                    <input type="text" id="search-input" placeholder="Search by name, city, or state...">
-                    <button class="btn btn-search">Search</button>
+                <p>Every second counts. Report sightings, view active missing children cases, and receive real-time
+                    updates from regional police stations. Help and earn rewards.</p>
+                <div class="crisis-actions" style="margin-top: 30px;">
+                    <button id="crisis-btn" class="btn-pulse" onclick="openWizard()">I need help finding
+                        someone</button>
                 </div>
             </div>
         </section>
@@ -84,7 +87,8 @@
                 </div>
                 <div class="form-group">
                     <label for="details">Additional Details</label>
-                    <textarea id="details" rows="4" required placeholder="Description of clothing, companions, etc."></textarea>
+                    <textarea id="details" rows="4" required
+                        placeholder="Description of clothing, companions, etc."></textarea>
                 </div>
                 <div class="form-group">
                     <label for="contact">Your Contact Number</label>
@@ -95,6 +99,80 @@
         </div>
     </div>
 
+    <!-- Crisis Wizard Modal -->
+    <div id="wizard-modal" class="modal">
+        <div class="modal-content wizard-content">
+            <span class="close-modal" onclick="closeWizard()">&times;</span>
+            <div class="progress-container">
+                <div class="progress-fill" id="wizard-progress" style="width: 25%;"></div>
+            </div>
+
+            <div id="step-1" class="wizard-step active-step">
+                <h2 style="color: var(--accent-red); margin-top: 15px;">Step 1: Basic Information</h2>
+                <p style="margin-bottom: 20px; color: var(--text-muted);">Please stay calm. We are here to help.</p>
+                <div class="form-group">
+                    <label>Child's Full Name</label>
+                    <input type="text" id="wiz-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" id="wiz-age" required>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" type="button" onclick="nextStep(2)">Next
+                    Step</button>
+            </div>
+
+            <div id="step-2" class="wizard-step" style="display: none;">
+                <h2 style="color: var(--accent-red); margin-top: 15px;">Step 2: Last Seen Details</h2>
+                <div class="form-group">
+                    <label>When were they last seen?</label>
+                    <input type="date" id="wiz-date" required>
+                </div>
+                <div class="form-group">
+                    <label>Where were they last seen? (City, Landmark)</label>
+                    <input type="text" id="wiz-location" required>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn" style="flex: 1; border: 1px solid var(--border-color);" type="button"
+                        onclick="prevStep(1)">Back</button>
+                    <button class="btn btn-primary" style="flex: 2;" type="button" onclick="nextStep(3)">Next
+                        Step</button>
+                </div>
+            </div>
+
+            <div id="step-3" class="wizard-step" style="display: none;">
+                <h2 style="color: var(--accent-red); margin-top: 15px;">Step 3: Physical Description</h2>
+                <div class="form-group">
+                    <label>What were they wearing? (Colors, patterns)</label>
+                    <textarea id="wiz-desc" rows="3" required></textarea>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn" style="flex: 1; border: 1px solid var(--border-color);" type="button"
+                        onclick="prevStep(2)">Back</button>
+                    <button class="btn btn-primary" style="flex: 2;" type="button" onclick="nextStep(4)">Next
+                        Step</button>
+                </div>
+            </div>
+
+            <div id="step-4" class="wizard-step" style="display: none;">
+                <h2 style="color: var(--accent-red); margin-top: 15px;">Step 4: Contact & Publish</h2>
+                <p style="margin-bottom: 20px; color: var(--text-muted);">Provide your details so authorities can reach
+                    you right away.</p>
+                <div class="form-group">
+                    <label>Your Phone Number</label>
+                    <input type="tel" id="wiz-contact" required>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn" style="flex: 1; border: 1px solid var(--border-color);" type="button"
+                        onclick="prevStep(3)">Back</button>
+                    <button class="btn btn-primary btn-submit" style="flex: 2; background-color: var(--accent-red);"
+                        type="button" onclick="submitWizard()">Publish Alert</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="app.js"></script>
 </body>
+
 </html>

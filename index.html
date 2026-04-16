@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FindMissing - Reconnecting Families</title>
-    <meta name="description" content="Official platform to report and find missing children in India. Connect with police and community to help.">
+    <meta name="description"
+        content="Official platform to report and find missing children in India. Connect with police and community to help.">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
     <!-- Navigation -->
@@ -21,6 +24,9 @@
                 <a href="#active-cases">Active Cases</a>
                 <a href="#how-it-works">How It Works</a>
                 <a href="#" class="btn-secondary" onclick="openPoliceLogin()">Police Login</a>
+                <span id="policeActions" style="display: none; align-items: center; margin-right: 15px;">
+                    <a href="#" style="color: var(--secondary); font-weight: bold; cursor: pointer; text-decoration: none;" onclick="openLedger()"><i class="fas fa-database"></i> Audit Ledger</a>
+                </span>
                 <a href="#" class="btn-primary" onclick="openReportModal()">Report Missing</a>
             </div>
             <div class="mobile-menu-btn">
@@ -33,11 +39,10 @@
     <header class="hero">
         <div class="hero-content">
             <h1>Help Us Bring Them <span class="highlight">Home</span></h1>
-            <p>Every second counts. Join the community-led mission to locate missing children across India. Report sightings, verify cases, and earn rewards for helping police.</p>
-            <div class="search-bar">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Search by name, city, or ID..." onkeyup="filterCards()">
-                <button onclick="filterCards()">Search</button>
+            <p>Every second counts. Join the community-led mission to locate missing children across India. Report
+                sightings, verify cases, and earn rewards for helping police.</p>
+            <div class="crisis-actions" style="margin-top: 2rem; margin-bottom: 3rem;">
+                <button id="crisis-btn" class="btn-pulse" onclick="openWizard()">I need help finding someone</button>
             </div>
             <div class="hero-stats">
                 <div class="stat-item">
@@ -59,7 +64,7 @@
 
     <!-- Main Content -->
     <main class="container">
-        
+
         <!-- Filters -->
         <section class="filters" id="active-cases">
             <div class="section-header">
@@ -176,6 +181,101 @@
         </div>
     </div>
 
+    <!-- Crisis Wizard Modal -->
+    <div class="modal" id="wizardModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <span class="close-btn" onclick="closeModal('wizardModal')">&times;</span>
+            <div class="progress-container">
+                <div class="progress-fill" id="wizard-progress" style="width: 25%;"></div>
+            </div>
+
+            <div id="step-1" class="wizard-step active-step">
+                <h2 style="color: var(--danger); margin-top: 15px;">Step 1: Basic Information</h2>
+                <p style="margin-bottom: 20px; color: var(--text-light);">Please stay calm. We are here to help.</p>
+                <div class="form-group">
+                    <label>Child's Full Name</label>
+                    <input type="text" id="wiz-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="text" id="wiz-age" required>
+                </div>
+                <button class="btn-primary full-width" type="button" onclick="nextStep(2)">Next Step</button>
+            </div>
+
+            <div id="step-2" class="wizard-step" style="display: none;">
+                <h2 style="color: var(--danger); margin-top: 15px;">Step 2: Last Seen Details</h2>
+                <div class="form-group">
+                    <label>When were they last seen?</label>
+                    <input type="date" id="wiz-date" required>
+                </div>
+                <div class="form-group">
+                    <label>Where were they last seen? (City, Landmark)</label>
+                    <input type="text" id="wiz-location" required>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-secondary" style="flex: 1;" type="button" onclick="prevStep(1)">Back</button>
+                    <button class="btn-primary" style="flex: 2;" type="button" onclick="nextStep(3)">Next Step</button>
+                </div>
+            </div>
+
+            <div id="step-3" class="wizard-step" style="display: none;">
+                <h2 style="color: var(--danger); margin-top: 15px;">Step 3: Physical Description</h2>
+                <div class="form-group">
+                    <label>What were they wearing? (Colors, patterns)</label>
+                    <textarea id="wiz-desc" rows="3" required></textarea>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-secondary" style="flex: 1;" type="button" onclick="prevStep(2)">Back</button>
+                    <button class="btn-primary" style="flex: 2;" type="button" onclick="nextStep(4)">Next Step</button>
+                </div>
+            </div>
+
+            <div id="step-4" class="wizard-step" style="display: none;">
+                <h2 style="color: var(--danger); margin-top: 15px;">Step 4: Contact & Publish</h2>
+                <p style="margin-bottom: 20px; color: var(--text-light);">Provide your details so authorities can reach
+                    you right away.</p>
+                <div class="form-group">
+                    <label>Your Phone Number</label>
+                    <input type="tel" id="wiz-contact" required>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-secondary" style="flex: 1;" type="button" onclick="prevStep(3)">Back</button>
+                    <button class="btn-primary" style="flex: 2; background-color: var(--danger); border: none;"
+                        type="button" onclick="submitWizard()">Publish Alert</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blockchain Ledger Modal -->
+    <div class="modal" id="ledgerModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="close-btn" onclick="closeModal('ledgerModal')">&times;</span>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                <i class="fas fa-link" style="color: var(--secondary); font-size: 1.5rem;"></i>
+                <h2 style="margin: 0; color: var(--secondary);">Blockchain Audit Trail</h2>
+            </div>
+            <p style="color: var(--text-light); margin-bottom: 15px; font-size: 0.9rem;">Mock cryptographic ledger verifying all updates to the database.</p>
+            <div style="overflow-x: auto; max-height: 400px;">
+                <table class="ledger-table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Action</th>
+                            <th>Case ID</th>
+                            <th>Cryptographic Hash</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ledgerBody">
+                        <!-- Entries placed by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>

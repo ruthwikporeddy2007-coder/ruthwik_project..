@@ -1,7 +1,9 @@
 :root {
-    --primary: #FF6B35; /* Alert Orange */
+    --primary: #FF6B35;
+    /* Alert Orange */
     --primary-dark: #E85A26;
-    --secondary: #1A3C5B; /* Police/Trust Blue */
+    --secondary: #1A3C5B;
+    /* Police/Trust Blue */
     --accent: #F7C59F;
     --text: #1F2937;
     --text-light: #6B7280;
@@ -29,7 +31,9 @@ body {
 }
 
 /* Typography & Utilities */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     line-height: 1.2;
     margin-bottom: 0.5rem;
 }
@@ -121,7 +125,8 @@ h1, h2, h3 {
 }
 
 .mobile-menu-btn {
-    display: none; /* Hidden on desktop */
+    display: none;
+    /* Hidden on desktop */
 }
 
 /* Hero */
@@ -236,7 +241,8 @@ h1, h2, h3 {
     transition: all 0.2s;
 }
 
-.filter-btn.active, .filter-btn:hover {
+.filter-btn.active,
+.filter-btn:hover {
     background: var(--secondary);
     color: var(--white);
     border-color: var(--secondary);
@@ -257,7 +263,7 @@ h1, h2, h3 {
     box-shadow: var(--shadow-md);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .card:hover {
@@ -277,9 +283,20 @@ h1, h2, h3 {
     z-index: 10;
 }
 
-.badge-risk { background: var(--danger); color: white; }
-.badge-new { background: var(--primary); color: white; }
-.badge-found { background: var(--success); color: white; }
+.badge-risk {
+    background: var(--danger);
+    color: white;
+}
+
+.badge-new {
+    background: var(--primary);
+    color: white;
+}
+
+.badge-found {
+    background: var(--success);
+    color: white;
+}
 
 .card-img-container {
     height: 250px;
@@ -355,13 +372,19 @@ h1, h2, h3 {
     background: #E0F2FE;
     color: #0369A1;
 }
-.btn-info:hover { background: #BAE6FD; }
+
+.btn-info:hover {
+    background: #BAE6FD;
+}
 
 .btn-share {
     background: #F3F4F6;
     color: var(--text);
 }
-.btn-share:hover { background: #E5E7EB; }
+
+.btn-share:hover {
+    background: #E5E7EB;
+}
 
 /* How It Works */
 .how-it-works {
@@ -415,7 +438,7 @@ footer {
 }
 
 .footer-bottom {
-    background: rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 1.5rem;
     font-size: 0.9rem;
@@ -430,7 +453,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -449,8 +472,15 @@ footer {
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .close-btn {
@@ -473,7 +503,8 @@ footer {
     font-size: 0.95rem;
 }
 
-.form-group input, .form-group textarea {
+.form-group input,
+.form-group textarea {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #D1D5DB;
@@ -487,10 +518,121 @@ footer {
     border-color: transparent;
 }
 
+/* Crisis Button & Wizard styles */
+.btn-pulse {
+    background-color: var(--danger);
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    animation: pulse 2s infinite;
+    transition: transform 0.3s;
+}
+
+.btn-pulse:hover {
+    transform: scale(1.05);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 20px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+.progress-container {
+    width: 100%;
+    background-color: var(--shadow-sm);
+    height: 8px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+    background: #e2e8f0;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--primary);
+    transition: width 0.4s ease;
+}
+
+/* Blockchain Ledger Table */
+.ledger-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: monospace;
+    font-size: 0.85rem;
+}
+
+.ledger-table th, .ledger-table td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.ledger-table th {
+    background: #f1f5f9;
+    color: var(--secondary);
+    position: sticky;
+    top: 0;
+}
+
+.hash-cell {
+    color: var(--success);
+    word-break: break-all;
+    font-weight: 600;
+}
+
+/* 48-Hour Review Tag */
+.badge-expired {
+    background: #4B5563; 
+    color: white;
+}
+
+.case-expired {
+    border: 2px solid #9CA3AF;
+}
+
+.expired-warning {
+    color: var(--danger);
+    font-weight: bold;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--danger);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
-    .hero h1 { font-size: 2.5rem; }
-    .nav-links { display: none; }
-    .mobile-menu-btn { display: block; font-size: 1.5rem; }
-    .hero-stats { gap: 1.5rem; }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        font-size: 1.5rem;
+    }
+
+    .hero-stats {
+        gap: 1.5rem;
+    }
 }
