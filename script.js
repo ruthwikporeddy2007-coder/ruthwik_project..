@@ -84,7 +84,6 @@ function appendToLedger(action, caseId) {
     ledger.unshift(entry);
     localStorage.setItem('findmissing_ledger', JSON.stringify(ledger));
 }
-let currentFilter = 'all';
 
 // DOM Elements
 const grid = document.getElementById('cardsGrid');
