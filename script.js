@@ -9,7 +9,7 @@ const mockData = [
         status: "Missing",
         risk: "high-risk",
         description: "Wearing blue school uniform. Last seen near Railway Station.",
-        image: "assets/images/child_portrait_boy_12_1776314948404.png"
+        image: "assets/images/rahul_12.png"
     },
     {
         id: "MP-1024",
@@ -20,7 +20,7 @@ const mockData = [
         status: "Missing",
         risk: "high-risk",
         description: "Pink floral dress. Carrying a red backpack.",
-        image: "assets/images/child_portrait_girl_8_1776314968852.png"
+        image: "assets/images/ananya_8.png"
     },
     {
         id: "MP-1021",
@@ -31,7 +31,7 @@ const mockData = [
         status: "Missing",
         risk: "recent",
         description: "Found wandering near Majestic. Currently in safe custody.",
-        image: "assets/images/child_portrait_boy_10_1776314986919.png"
+        image: "assets/images/unknown_10.png"
     },
     {
         id: "MP-1018",
@@ -42,7 +42,7 @@ const mockData = [
         status: "Missing",
         risk: "medium",
         description: "Height 5'2. Black hair. Last seen at City Mall.",
-        image: "assets/images/child_portrait_girl_15_1776315026163.png"
+        image: "assets/images/priya_14.png"
     },
     {
         id: "MP-0992",
@@ -53,7 +53,7 @@ const mockData = [
         status: "Found",
         risk: "low",
         description: "Reunited with family on Feb 13th.",
-        image: "assets/images/child_portrait_boy_6_1776315367108.png"
+        image: "assets/images/arjun_6.png"
     }
 ];
 

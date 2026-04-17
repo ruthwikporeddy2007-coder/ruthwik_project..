@@ -6,7 +6,7 @@ const MOCK_CASES = [
         location: "Mumbai, Maharashtra",
         missingDate: "2026-03-01",
         reward: "₹ 50,000",
-        img: "./images/child_portrait_boy_12_1776314948404.png"
+        img: "./images/aarav.png"
     },
     {
         id: "C-2026-002",
@@ -15,7 +15,7 @@ const MOCK_CASES = [
         location: "Delhi, NCR",
         missingDate: "2026-02-28",
         reward: "₹ 1,00,000",
-        img: "./images/child_portrait_girl_8_1776314968852.png"
+        img: "./images/priya.png"
     },
     {
         id: "C-2026-003",
@@ -24,7 +24,7 @@ const MOCK_CASES = [
         location: "Pune, Maharashtra",
         missingDate: "2026-03-03",
         reward: "₹ 25,000",
-        img: "./images/child_portrait_boy_10_1776314986919.png"
+        img: "./images/rahul.png"
     },
     {
         id: "C-2026-004",
@@ -33,7 +33,7 @@ const MOCK_CASES = [
         location: "Bangalore, Karnataka",
         missingDate: "2026-02-15",
         reward: "₹ 75,000",
-        img: "./images/child_portrait_girl_15_1776315026163.png"
+        img: "./images/riya.png"
     }
 ];
 
